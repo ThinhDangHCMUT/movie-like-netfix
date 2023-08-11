@@ -1,6 +1,8 @@
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useContext, useState } from "react";
 import "./newMovie.css";
-import storage from "../../firebase";
+import { storage } from "../../firebase";
 import { createMovie } from "../../context/movieContext/apiCalls";
 import { MovieContext } from "../../context/movieContext/MovieContext";
 
@@ -19,6 +21,9 @@ export default function NewMovie() {
     const value = e.target.value;
     setMovie({ ...movie, [e.target.name]: value });
   };
+
+  const notifySuccess = () => toast.success("Movie created successfully!",{position: toast.POSITION.TOP_RIGHT});
+  const notifyError = (err) => toast.error(`Error creating movie! ${err}`, {position: toast.POSITION.TOP_RIGHT});
 
   const upload = (items) => {
     items.forEach((item) => {
@@ -59,11 +64,12 @@ export default function NewMovie() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createMovie(movie, dispatch);
+    createMovie(movie, dispatch, notifySuccess, notifyError);
   };
 
   return (
     <div className="newProduct">
+      <div>
       <h1 className="addProductTitle">New Movie</h1>
       <form className="addProductForm">
         <div className="addProductItem">
@@ -180,6 +186,8 @@ export default function NewMovie() {
           </button>
         )}
       </form>
+      </div>
+      <ToastContainer />
     </div>
   );
 }

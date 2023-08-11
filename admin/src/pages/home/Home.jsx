@@ -34,7 +34,7 @@ export default function Home() {
         const res = await axios.get("/users/stats", {
           headers: {
             token:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYwZTZmYzQ2NDk0Mjc3MTYwNDg4MmMxNiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTYyNTgzMjMxMSwiZXhwIjoxNjI2MjY0MzExfQ.ATXV-1TTWIGyVBttTQSf0erRWjsgZ8jHQv1ZsUixbng",
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YWZjYzUyYjBiN2UyMzYxNjc0OWZmMSIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY5MTM5NjkwOSwiZXhwIjoxNjkxODI4OTA5fQ.VL3W9DkzJgRcKofVXhKBlUTGbS7zg9nLmmBRUFKGXZw",
           },
         });
         const statsList = res.data.sort(function (a, b) {

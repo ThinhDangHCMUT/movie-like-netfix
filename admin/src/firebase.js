@@ -1,15 +1,16 @@
-import firebase from "firebase";
+import firebase from "firebase/compat/app";
+import "firebase/compat/storage";
 
 const firebaseConfig = {
-  apiKey: process.env.APP_KEY,
-  authDomain: "netflix-151df.firebaseapp.com",
-  projectId: "netflix-151df",
-  storageBucket: "netflix-151df.appspot.com",
-  messagingSenderId: "316700975498",
-  appId: "1:316700975498:web:15063159b205c1a349a873",
-  measurementId: "G-2ZGE63ES9F",
+  apiKey: "AIzaSyCBfgXYU8wXqIaLS776IJYxNndMTkCYYhM",
+  authDomain: "movie-1dbcb.firebaseapp.com",
+  projectId: "movie-1dbcb",
+  storageBucket: "movie-1dbcb.appspot.com",
+  messagingSenderId: "156238422407",
+  appId: "1:156238422407:web:95f97b4f31de8a4ffcf322",
+  measurementId: "G-8XQR4E97YZ"
 };
 
 firebase.initializeApp(firebaseConfig);
 const storage = firebase.storage();
-export default storage;
+export {storage};

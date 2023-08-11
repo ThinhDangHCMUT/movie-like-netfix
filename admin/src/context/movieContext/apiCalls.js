@@ -10,6 +10,7 @@ import {
   getMoviesStart,
   getMoviesSuccess,
 } from "./MovieActions";
+// import 'react-toastify/dist/ReactToastify.css';
 
 export const getMovies = async (dispatch) => {
   dispatch(getMoviesStart());
@@ -26,7 +27,7 @@ export const getMovies = async (dispatch) => {
 };
 
 //create
-export const createMovie = async (movie, dispatch) => {
+export const createMovie = async (movie, dispatch, onSuccess, onError) => {
   dispatch(createMovieStart());
   try {
     const res = await axios.post("/movies", movie, {
@@ -35,8 +36,10 @@ export const createMovie = async (movie, dispatch) => {
       },
     });
     dispatch(createMovieSuccess(res.data));
+    onSuccess()
   } catch (err) {
     dispatch(createMovieFailure());
+    onError(err.message);
   }
 };
 

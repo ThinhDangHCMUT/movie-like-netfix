@@ -61,4 +61,19 @@ router.get("/", verify, async (req, res) => {
   }
 });
 
+//UPDATE 
+router.put("/:id", verify, async (req, res) => {
+  console.log(req.body)
+  if (req.user.isAdmin) {
+    try {
+      await List.findByIdAndUpdate(req.params.id, req.body);
+      res.status(201).json("The list has been updated...");
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  } else {
+    res.status(403).json("You are not allowed!");
+  }
+});
+
 module.exports = router;
