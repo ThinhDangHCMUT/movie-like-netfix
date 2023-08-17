@@ -10,7 +10,6 @@ import {
   getMoviesStart,
   getMoviesSuccess,
 } from "./MovieActions";
-// import 'react-toastify/dist/ReactToastify.css';
 
 export const getMovies = async (dispatch) => {
   dispatch(getMoviesStart());

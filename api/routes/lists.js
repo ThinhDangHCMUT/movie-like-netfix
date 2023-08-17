@@ -66,6 +66,7 @@ router.put("/:id", verify, async (req, res) => {
   console.log(req.body)
   if (req.user.isAdmin) {
     try {
+      if(!req.body.title ||!req.body.genre || !req.body.type) throw new Error("Missing fields")
       await List.findByIdAndUpdate(req.params.id, req.body);
       res.status(201).json("The list has been updated...");
     } catch (err) {

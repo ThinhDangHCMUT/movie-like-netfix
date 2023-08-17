@@ -33,7 +33,7 @@ function App() {
             <Topbar />
             <div className="container">
               <Sidebar />
-              <Route exact path="/">
+              <Route path="/" exact>
                 <Home />
               </Route>
               <Route path="/users">
