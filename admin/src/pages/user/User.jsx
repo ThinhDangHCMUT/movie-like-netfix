@@ -7,9 +7,19 @@ import {
   Publish,
 } from "@material-ui/icons";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./user.css";
 
 export default function User() {
+  const notifySuccess = () =>
+    toast.success("User updated successfully!", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+  const notifyError = (err) =>
+    toast.error(`Error creating user! ${err}`, {
+      position: toast.POSITION.TOP_RIGHT,
+    });
   return (
     <div className="user">
       <div className="userTitleContainer">
@@ -118,6 +128,7 @@ export default function User() {
           </form>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }

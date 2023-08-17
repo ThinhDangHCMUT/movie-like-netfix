@@ -7,19 +7,17 @@ import {
   QueuePlayNext,
   ExitToApp,
 } from "@material-ui/icons";
-import {logoutSuccess} from "../../context/authContext/apiCalls";
+import { logoutSuccess } from "../../context/authContext/apiCalls";
 import { AuthContext } from "../../context/authContext/AuthContext";
 
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-import { redirect } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function Sidebar() {
-  const {dispatch} = useContext(AuthContext);
+  const { dispatch } = useContext(AuthContext);
   return (
     <div className="sidebar">
       <div className="sidebarWrapper">
-
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Quick Menu</h3>
           <ul className="sidebarList">
@@ -57,17 +55,23 @@ export default function Sidebar() {
         </div>
         <div className="sidebarMenu">
           <div className="sidebarList">
-            <Link to='/login'>
-              <button className="sidebarListItem" type="submit" onClick={() => {
+            {/* <Link to="/login"> */}
+            <button
+              className="sidebarListItem"
+              type="submit"
+              onClick={() => {
+                setTimeout(() => {
+                  window.location.replace("/login");
+                }, 1000);
                 logoutSuccess(dispatch);
-              }}>
-                  <ExitToApp className="sidebarIcon" />
-                  Logout
-              </button>
-            </Link>
+              }}
+            >
+              <ExitToApp className="sidebarIcon" />
+              Logout
+            </button>
+            {/* </Link> */}
           </div>
         </div>
-        
       </div>
     </div>
   );

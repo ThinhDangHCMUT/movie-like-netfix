@@ -59,7 +59,7 @@ export const deleteList = async (id, dispatch) => {
 };
 
 //update
-export const updateList = async (id, list, dispatch) => {
+export const updateList = async (id, list, dispatch, onSuccess, onError) => {
   dispatch(updateListStart());
   try {
     await axios.put("/lists/"+ id, list, {
@@ -68,7 +68,9 @@ export const updateList = async (id, list, dispatch) => {
       },
     });
     dispatch(updateListSuccess(id));
+    onSuccess();
   } catch (err) {
     dispatch(updateListFailure());
+    onError(err.message);
   }
 };

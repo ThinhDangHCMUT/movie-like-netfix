@@ -24,6 +24,10 @@ const AuthReducer = (state, action) => {
         isFetching: false,
         error: false,
       };
+    case "GET_USERS_START":
+      return{
+        
+      };
     default:
       return { ...state };
   }

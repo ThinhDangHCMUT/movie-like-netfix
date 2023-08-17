@@ -2,6 +2,8 @@ import { useState, useContext, useEffect } from "react";
 import { updateList, getLists } from "../../context/listContext/apiCalls";
 import { ListContext } from "../../context/listContext/ListContext";
 import { Link, useLocation } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./list.css";
 
 export default function List() {
@@ -15,6 +17,15 @@ export default function List() {
     getLists(dispatch);
   }, [updated]);
 
+  const notifySuccess = () =>
+    toast.success("Movie created successfully!", {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+  const notifyError = (err) =>
+    toast.error(`Error creating movie! ${err}`, {
+      position: toast.POSITION.TOP_RIGHT,
+    });
+
   const handleUpdateList = (e) => {
     e.preventDefault();
     setLists({ ...lists, [e.target.name]: e.target.value });
@@ -22,7 +33,7 @@ export default function List() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setUpdated((item) => !item);
-    updateList(list._id, lists, dispatch);
+    updateList(list._id, lists, dispatch, notifySuccess, notifyError);
   };
   return (
     <div className="product">
@@ -75,6 +86,7 @@ export default function List() {
           </div>
         </form>
       </div>
+      <ToastContainer />
     </div>
   );
 }
